@@ -1,21 +1,47 @@
-import { CMS_NAME } from '../lib/constants'
+import styled from '@emotion/styled'
+import Link from 'next/link'
+import { useState } from 'react'
+
+const Section = styled.section`
+  height: 4.5rem;
+  background-color: #1A1B1E;
+
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  display: flex;
+  align-items: center;
+`
+
+const H1 = styled.h1`
+  color: #F0F0F0;
+  font-weight: bold;
+  margin-right: 1rem;
+  font-size: 20px;
+`
+
+const H3 = styled.h3`
+  color: rgb(240, 240, 240);
+  transition: opacity 1s;
+  font-size: 16px;
+`
 
 export default function Intro() {
+  const [opacity, setOpacity] = useState(0.8)
   return (
-    <section className="flex-col md:flex-row flex items-center md:justify-between mt-16 mb-16 md:mb-12">
-      <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-8">
-        Blog.
-      </h1>
-      <h4 className="text-center md:text-left text-lg mt-5 md:pl-8">
-        A statically generated blog example using{' '}
-        <a
-          href="https://nextjs.org/"
-          className="underline hover:text-success duration-200 transition-colors"
-        >
-          Next.js
-        </a>{' '}
-        and {CMS_NAME}.
-      </h4>
-    </section>
+    <Section>
+      <H1>
+        <Link href="/">ColdSurf Blog</Link>
+      </H1>
+      <H3
+        style={{
+          opacity
+        }}
+        onMouseOver={() => setOpacity(1.0)}
+        onMouseOut={() => setOpacity(0.8)}
+      >
+        <Link href="/about-me">about me</Link>
+      </H3>
+    </Section>
   )
 }
